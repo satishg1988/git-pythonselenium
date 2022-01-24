@@ -1,0 +1,30 @@
+1642577759882	geckodriver	INFO	Listening on 127.0.0.1:64177
+1642577762992	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64178" "-no-remote" "-profile" "C:\\Users\\Satish\\AppData\\Local\\Temp\\rust_mozprofile2dV5Lf"
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: this.Paths is null
+Full stack: Agent.write@resource:///modules/sessionstore/SessionWorker.js:196:9
+worker.dispatch@resource:///modules/sessionstore/SessionWorker.js:21:24
+anonymous/AbstractWorker.prototype.handleMessage@resource://gre/modules/workers/PromiseWorker.js:122:16
+@resource:///modules/sessionstore/SessionWorker.js:30:41
+
+*************************
+console.error: 
+  Could not write session state file 
+  Message: TypeError: this.Paths is null
+  Stack:
+    Agent.write@resource:///modules/sessionstore/SessionWorker.js:196:9
+worker.dispatch@resource:///modules/sessionstore/SessionWorker.js:21:24
+anonymous/AbstractWorker.prototype.handleMessage@resource://gre/modules/workers/PromiseWorker.js:122:16
+@resource:///modules/sessionstore/SessionWorker.js:30:41
+
+  Agent.write@resource:///modules/sessionstore/SessionWorker.js:196:9
+worker.dispatch@resource:///modules/sessionstore/SessionWorker.js:21:24
+anonymous/AbstractWorker.prototype.handleMessage@resource://gre/modules/workers/PromiseWorker.js:122:16
+@resource:///modules/sessionstore/SessionWorker.js:30:41
+
+1642578485547	geckodriver	INFO	Listening on 127.0.0.1:64246
+1642578488595	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64247" "-no-remote" "-profile" "C:\\Users\\Satish\\AppData\\Local\\Temp\\rust_mozprofilets34zs"
+1642578762680	geckodriver	INFO	Listening on 127.0.0.1:64324
+1642578765566	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64325" "-no-remote" "-profile" "C:\\Users\\Satish\\AppData\\Local\\Temp\\rust_mozprofileoeXrxG"
