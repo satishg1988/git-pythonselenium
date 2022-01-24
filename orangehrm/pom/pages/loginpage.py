@@ -33,6 +33,7 @@ class LoginPage(Events):
         assert self.getElementText(self.title, locator_type="xpath").is_displayed(), "---Login Failed---"
 
     # def verifyLoginTitle(self):
+    #  test for testing purpose
     #     actual_title = self.getTitle()
     #     return self.verifyTextContains(actual_title, expected_text="test")
         # if "OrangeHRM" in self.getTitle():
