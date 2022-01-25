@@ -2,12 +2,14 @@
   <dictionary name="Satish">
     <words>
       <w>bytype</w>
+      <w>chromedriver</w>
       <w>clearelement</w>
       <w>clearpassword</w>
       <w>clearusername</w>
       <w>clickable</w>
       <w>clickelement</w>
       <w>clickusername</w>
+      <w>datepicker</w>
       <w>destinationfile</w>
       <w>dropdown</w>
       <w>employeename</w>

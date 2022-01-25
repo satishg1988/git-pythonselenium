@@ -54,8 +54,10 @@ class LoginTest(unittest.TestCase, Data):
         llp.click_fromdate_leavelist("1994", "SEP", "11")
         llp.click_todate_leavelist("2021", "JUN", "22")
         llp.selectLeaveStatus()
-        llp.searchEmployeeName("te")
+        llp.searchEmployeeName("te", "Garry White")
         llp.selectSubUnit('  Sales')
+        llp.selectPastEmployees()
+        llp.clickSearch()
 
     # Runs once after every test
     def tearDown(self):

@@ -35,16 +35,16 @@ class Events:
         return element
 
     def getElements(self, locator, locator_type="id"):
-        elements = None
+        element = None
         try:
             locator_type = locator_type.lower()
             bytype = self.bytype(locator_type)
-            elements = self.driver.find_elements(bytype, locator)
-            print("Total Elements: " + str(len(elements)))
-            print("Elements found are: " + str(elements))
+            element = self.driver.find_elements(bytype, locator)
+            print("Total Elements: " + str(len(element)))
+            print("Elements found are: " + str(locator))
         except:
             print("Elements not found")
-        return elements
+        return element
 
     def clickelement(self, locator, locator_type="id"):
         try:
@@ -79,11 +79,16 @@ class Events:
         print("Element displayed: " + text_received)
         return element
 
-    def getElementsText(self, locator, locator_type="id"):
-        element = self.getElements(locator, locator_type)
-        for ele in element:
-            print("Elements received are: " + ele.text)
-        return ele
+    # def getElementsText(self, req_empname, locator, locator_type="id"):
+    #     element = self.getElements(locator, locator_type)
+    #     for ele in element:
+    #         ele_text = ele.text
+    #         print("Elements received are: " + ele_text)
+    #         if req_empname == ele_text:
+    #             print("Element present in the list: " + ele_text)
+    #             # ele.click()
+    #             break
+    #     return element
 
     def selectElement(self, req_dropdown_value, locator, locator_type="id"):
         select_subunit = Select(self.getelement(locator, locator_type))

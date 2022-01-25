@@ -31,6 +31,7 @@ class LoginPage(Events):
 
     def verifyLoginSuccess(self):
         assert self.getElementText(self.title, locator_type="xpath").is_displayed(), "---Login Failed---"
+        print("Login Successful")
 
     # def verifyLoginTitle(self):
     #  test for testing purpose
