@@ -12,22 +12,22 @@ class LoginPage(Events):
         self.login_button = allpagelocators.AllLocators.login_button
         self.title = allpagelocators.AllLocators.title
 
-    def enter_username(self, username, locator_type="xpath"):
+    def enterUsername(self, username, locator_type="xpath"):
         self.sendkeyselement(username, self.username_textbox, locator_type)
 
-    def enter_password(self, password, locator_type="xpath"):
+    def enterPassword(self, password, locator_type="xpath"):
         self.sendkeyselement(password, self.password_textbox, locator_type)
 
-    def click_login(self):
+    def clickLogin(self):
         self.clickelement(self.login_button, locator_type="id")
 
     def validLogin(self, uname="", pwd=""):
         driver = self.driver
         lp = LoginPage(driver)
 
-        lp.enter_username(uname)
-        lp.enter_password(pwd)
-        lp.click_login()
+        lp.enterUsername(uname)
+        lp.enterPassword(pwd)
+        lp.clickLogin()
 
     def verifyLoginSuccess(self):
         assert self.getElementText(self.title, locator_type="xpath").is_displayed(), "---Login Failed---"

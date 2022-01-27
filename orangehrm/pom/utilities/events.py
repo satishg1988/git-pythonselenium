@@ -20,6 +20,8 @@ class Events:
             return By.CSS_SELECTOR
         elif locator_type == "tagname":
             return By.TAG_NAME
+        elif locator_type == "linktext":
+            return By.LINK_TEXT
         else:
             print("Locator type " + locator_type + " is not valid")
 
@@ -52,7 +54,7 @@ class Events:
             element.click()
             print("Clicked the element: " + locator)
         except:
-            print(" Not able to click the element: " + locator)
+            print("Not able to click the element: " + locator)
         return element
 
     def clearelement(self, locator, locator_type="id"):
@@ -90,7 +92,7 @@ class Events:
     #             break
     #     return element
 
-    def selectElement(self, req_dropdown_value, locator, locator_type="id"):
+    def selectElementByVisibleText(self, req_dropdown_value, locator, locator_type="id"):
         select_subunit = Select(self.getelement(locator, locator_type))
         select_subunit.select_by_visible_text(req_dropdown_value)
 

@@ -8,8 +8,13 @@ class AllLocators:
     title = "//h1[text()='Dashboard']"
     welcome_user_link = "//a[contains(text(), 'Welcome')]"
     logout_link = "//a[contains(text(), 'Logout')]"
+    header_menu_options = "//ul[@id='mainMenuFirstLevelUnorderedList']//b"
+    sub_menu_options = "//a[@class='firstLevelMenu']//parent::li//ul//a"
+    current_submenu_options = "//li[@class='current main-menu-first-level-list-item']//ul//a[@class='arrow']"
     header_leave_link = "//a[@id='menu_leave_viewLeaveModule']"
-    header_menu_bar = "//ul[@id='mainMenuFirstLevelUnorderedList']//b"
+    leave_list_link = "//a[text()='Leave List']"
+    add_entitlements = "Add Entitlements"
+    # //a[@id='menu_leave_viewLeaveModule']/parent::li/ul/li/a[text()='Leave List']
 
     # All locators on the Leave-->Leave List page
     fromdate_field = "//input[@id='calFromDate']/following-sibling::img"

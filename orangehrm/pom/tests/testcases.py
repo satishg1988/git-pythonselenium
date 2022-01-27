@@ -10,11 +10,12 @@ from orangehrm.pom.browsersetup.browseractions import Browser
 from orangehrm.pom.pages.homepage import HomePage
 from orangehrm.pom.pages.leavelistpage import LeaveList
 from orangehrm.pom.pages.loginpage import LoginPage
+from orangehrm.pom.pages.menuoptions import MenuOptions
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
-class LoginTest(unittest.TestCase, Data):
+class TestCases(unittest.TestCase, Data):
 
     # Runs once before all the tests
     @classmethod
@@ -41,16 +42,19 @@ class LoginTest(unittest.TestCase, Data):
         driver = self.driver
 
         hp = HomePage(driver)
-        hp.click_welcome_admin_link()
+        hp.clickWelcomeUserLink()
 
     @pytest.mark.run(order=3)
     def test_headerMenuOptions(self):
         driver = self.driver
-        hp = HomePage(driver)
+        # hp = HomePage(driver)
         llp = LeaveList(driver)
+        mo = MenuOptions(driver)
 
-        hp.click_header_menu_options("LEAVE")
-        hp.click_header_leave_link()
+        mo.clickHeaderMenuOptions("Leave")
+        llp.clickApplyLeaveSubMenu("Apply")
+        llp.clickAddEntitlementsSubMenu("Add Entitlements")
+        llp.clickLeaveListSubMenu("Leave List")
         llp.click_fromdate_leavelist("1994", "SEP", "11")
         llp.click_todate_leavelist("2021", "JUN", "22")
         llp.selectLeaveStatus()
@@ -63,7 +67,7 @@ class LoginTest(unittest.TestCase, Data):
     def tearDown(self):
         driver = self.driver
         hp = HomePage(driver)
-        hp.click_logout_link()
+        hp.clickLogoutLink()
 
     # Runs once after all the tests
     @classmethod

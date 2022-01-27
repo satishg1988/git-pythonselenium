@@ -11,7 +11,7 @@ class Browser():
     def browserSetUp(self, browser):
         if browser.casefold() == "chrome":
             self.driver = webdriver.Chrome("E:/PycharmProjects/git-pythonselenium/orangehrm/drivers/chromedriver97.exe")
-            print("Firefox Browser Launched")
+            print("Chrome Browser Launched")
         elif browser.casefold() == "firefox":
             self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             print("Firefox Browser Launched")

@@ -6,6 +6,8 @@ from selenium.webdriver.support.select import Select
 from orangehrm.pom.locators.allpagelocators import AllLocators
 from orangehrm.pom.utilities.allscreenshots import ScreenShots
 from orangehrm.pom.utilities.events import Events
+from orangehrm.pom.pages.homepage import HomePage
+from orangehrm.pom.pages.menuoptions import MenuOptions
 
 
 class LeaveList(Events):
@@ -23,6 +25,27 @@ class LeaveList(Events):
         self.subunit_dropdown = AllLocators.subunit_dropdown
         self.past_employees_checkbox = AllLocators.past_employees_checkbox
         self.search_button = AllLocators.search_button
+        self.add_entitlements = AllLocators.add_entitlements
+
+    def clickApplyLeaveSubMenu(self, req_sub_menu):
+        driver = self.driver
+        # hp = HomePage(driver)
+        # hp.clickSubMenuOptions(req_sub_menu)
+        mo = MenuOptions(driver)
+        mo.clickSubMenuOptions(req_sub_menu)
+
+    def clickAddEntitlementsSubMenu(self, req_sub_menu):
+        driver = self.driver
+        mo = MenuOptions(driver)
+        mo.clickSubMenuOptions(req_sub_menu)
+        # self.clickelement(self.add_entitlements, locator_type="linktext")
+
+    def clickLeaveListSubMenu(self, req_sub_menu):
+        driver = self.driver
+        # hp = HomePage(driver)
+        # hp.clickSubMenuOptions(req_sub_menu)
+        mo = MenuOptions(driver)
+        mo.clickSubMenuOptions(req_sub_menu)
 
     def click_fromdate_leavelist(self, req_year, req_month, req_day):
         self.driver.find_element(By.XPATH, self.fromdate_field).click()
@@ -128,7 +151,7 @@ class LeaveList(Events):
     def selectSubUnit(self, req_dropdown_value):
         # select_subunit = Select(self.driver.find_element(By.XPATH, self.subunit_dropdown))
         # select_subunit.select_by_visible_text('  Sales')
-        self.selectElement(req_dropdown_value, self.subunit_dropdown, locator_type="xpath")
+        self.selectElementByVisibleText(req_dropdown_value, self.subunit_dropdown, locator_type="xpath")
 
     def selectPastEmployees(self):
         if not self.getelement(self.past_employees_checkbox, locator_type="xpath").is_selected():

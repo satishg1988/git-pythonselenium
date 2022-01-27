@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Satish">
     <words>
+      <w>allpage</w>
       <w>bytype</w>
       <w>chromedriver</w>
       <w>clearelement</w>
@@ -23,11 +24,13 @@
       <w>getelement</w>
       <w>leavelist</w>
       <w>leavestatus</w>
+      <w>linktext</w>
       <w>orangehrm</w>
       <w>pythonselenium</w>
       <w>reqdata</w>
       <w>searchbox</w>
       <w>sendkeyselement</w>
+      <w>tagname</w>
       <w>testscreenshot</w>
       <w>todate</w>
       <w>tomonth</w>
