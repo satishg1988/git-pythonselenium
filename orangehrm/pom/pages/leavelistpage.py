@@ -148,9 +148,11 @@ class LeaveList(Events):
             ele_text = ele.text
             print("Elements received are: " + ele_text)
             if req_empname == ele_text:
-                print("Element present in the list: " + ele_text)
+                print("Employee name present in the list: " + ele_text)
                 ele.click()
                 break
+            else:
+                print("Employee name is not present in the list: " + ele_text)
 
     def selectSubUnit(self, req_dropdown_value):
         # select_subunit = Select(self.driver.find_element(By.XPATH, self.subunit_dropdown))
