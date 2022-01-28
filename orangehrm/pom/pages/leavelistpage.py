@@ -27,24 +27,28 @@ class LeaveList(Events):
         self.search_button = AllLocators.search_button
         self.add_entitlements = AllLocators.add_entitlements
 
-    def clickApplyLeaveSubMenu(self, req_sub_menu):
+    def clickApplyLeaveSubMenu(self, req_head_menu, req_sub_menu):
         driver = self.driver
         # hp = HomePage(driver)
         # hp.clickSubMenuOptions(req_sub_menu)
         mo = MenuOptions(driver)
+        mo.moveToHeaderMenuOptions(req_head_menu)
         mo.clickSubMenuOptions(req_sub_menu)
 
-    def clickAddEntitlementsSubMenu(self, req_sub_menu):
+    def clickAddEntitlementsSubMenu(self, req_head_menu, req_sub_menu1, req_sub_menu2):
         driver = self.driver
         mo = MenuOptions(driver)
-        mo.clickSubMenuOptions(req_sub_menu)
+        mo.moveToHeaderMenuOptions(req_head_menu)
+        mo.moveToSubMenuOptions(req_sub_menu1)
+        mo.clickSubMenuOptions(req_sub_menu2)
         # self.clickelement(self.add_entitlements, locator_type="linktext")
 
-    def clickLeaveListSubMenu(self, req_sub_menu):
+    def clickLeaveListSubMenu(self, req_head_menu, req_sub_menu):
         driver = self.driver
         # hp = HomePage(driver)
         # hp.clickSubMenuOptions(req_sub_menu)
         mo = MenuOptions(driver)
+        mo.moveToHeaderMenuOptions(req_head_menu)
         mo.clickSubMenuOptions(req_sub_menu)
 
     def click_fromdate_leavelist(self, req_year, req_month, req_day):

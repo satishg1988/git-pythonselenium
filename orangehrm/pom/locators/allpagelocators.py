@@ -10,7 +10,7 @@ class AllLocators:
     logout_link = "//a[contains(text(), 'Logout')]"
     header_menu_options = "//ul[@id='mainMenuFirstLevelUnorderedList']//b"
     sub_menu_options = "//a[@class='firstLevelMenu']//parent::li//ul//a"
-    current_submenu_options = "//li[@class='current main-menu-first-level-list-item']//ul//a[@class='arrow']"
+    # current_submenu_options = "//li[@class='current main-menu-first-level-list-item']//ul//a[@class='arrow']"
     header_leave_link = "//a[@id='menu_leave_viewLeaveModule']"
     leave_list_link = "//a[text()='Leave List']"
     add_entitlements = "Add Entitlements"

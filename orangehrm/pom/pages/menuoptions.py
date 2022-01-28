@@ -20,20 +20,32 @@ class MenuOptions(Events):
         self.sub_menu_options = AllLocators.sub_menu_options
 
     # Get all the header menu options and click the required option
-    def clickHeaderMenuOptions(self, req_head_menu, locator_type="xpath"):
+    def moveToHeaderMenuOptions(self, req_head_menu):
         # header_menu = self.driver.find_elements(By.XPATH, self.header_menu_bar)
-        header_menus = self.getElements(self.header_menu_options, locator_type)
+        header_menus = self.getElements(self.header_menu_options, locator_type="xpath")
         print("Total Header Menu Options: " + str(len(header_menus)))
-        for menu in header_menus:
-            print("Menu: " + menu.text)
-            if req_head_menu.casefold() == menu.text.casefold():
-                menu.click()
-                # action = ActionChains(self.driver)
-                # action.move_to_element(menu).click(menu).perform()
-                print("Required header menu option clicked: " + req_head_menu)
+        for header_menu in header_menus:
+            print("Menu: " + header_menu.text)
+            if req_head_menu.casefold() == header_menu.text.casefold():
+                # menu.click()
+                action = ActionChains(self.driver)
+                action.move_to_element(header_menu).perform()
+                print("Moved to required header menu options: " + req_head_menu)
                 break
 
-    # Gets all the sub menu options and clicks the required option
+    # Gets all the primary sub menu options and moves to the required option
+    def moveToSubMenuOptions(self, req_sub_menu):
+        # self.clickelement(self.header_leave_link, locator_type)
+        # self.clickelement(self.leave_list_link, locator_type="xpath")
+        # print("Leave header link clicked")
+        sub_menus = self.getElements(self.sub_menu_options, locator_type="xpath")
+        for sub_menu in sub_menus:
+            if req_sub_menu.casefold() == sub_menu.text.casefold():
+                action = ActionChains(self.driver)
+                action.move_to_element(sub_menu).perform()
+                print("Moved to required sub menu options: " + req_sub_menu)
+                break
+
     def clickSubMenuOptions(self, req_sub_menu):
         # self.clickelement(self.header_leave_link, locator_type)
         # self.clickelement(self.leave_list_link, locator_type="xpath")

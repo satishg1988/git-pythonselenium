@@ -49,12 +49,11 @@ class TestCases(unittest.TestCase, Data):
         driver = self.driver
         # hp = HomePage(driver)
         llp = LeaveList(driver)
-        mo = MenuOptions(driver)
-
-        mo.clickHeaderMenuOptions("Leave")
-        llp.clickApplyLeaveSubMenu("Apply")
-        llp.clickAddEntitlementsSubMenu("Add Entitlements")
-        llp.clickLeaveListSubMenu("Leave List")
+        # mo = MenuOptions(driver)
+        # mo.clickHeaderMenuOptions("Leave")
+        llp.clickApplyLeaveSubMenu("Leave", "Apply")
+        llp.clickAddEntitlementsSubMenu("Leave", "Entitlements", "Add Entitlements")
+        llp.clickLeaveListSubMenu("Leave", "Leave List")
         llp.click_fromdate_leavelist("1994", "SEP", "11")
         llp.click_todate_leavelist("2021", "JUN", "22")
         llp.selectLeaveStatus()
