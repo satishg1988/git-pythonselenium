@@ -3,10 +3,12 @@ class AllLocators:
     username_textbox = "//input[@id='txtUsername']"
     password_textbox = "//input[@id='txtPassword']"
     login_button = "btnLogin"
+    username_textbox_empty = "//span[text()='Username cannot be empty']"
+    password_textbox_empty = "//span[text()='Password cannot be empty']"
 
     # All locators on the Orange HRM landing page
     title = "//h1[text()='Dashboard']"
-    welcome_user_link = "//a[contains(text(), 'Welcome')]"
+    welcome_user_link = "//a[@id='welcome']"
     logout_link = "//a[contains(text(), 'Logout')]"
     header_menu_options = "//ul[@id='mainMenuFirstLevelUnorderedList']//b"
     sub_menu_options = "//a[@class='firstLevelMenu']//parent::li//ul//a"

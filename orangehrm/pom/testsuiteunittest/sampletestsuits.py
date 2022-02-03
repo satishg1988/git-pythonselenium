@@ -1,14 +1,14 @@
 import unittest
 import HtmlTestRunner
-from orangehrm.pom.tests.testcases import Logintest
+from orangehrm.pom.tests.testcases import TestCases
 
 
 class TestSuite:
-    tc1 = unittest.TestLoader().loadTestsFromTestCase(Logintest)
+    tc1 = unittest.TestLoader().loadTestsFromTestCase(TestCases)
 
     smoketest = unittest.TestSuite([tc1])
     unittest.TextTestRunner(verbosity=1).run(smoketest)
 
 
-if __name__ == '__main__':
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='E:/PycharmProjects/PythonSelenium/reports'))
+# if __name__ == '__main__':
+#     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='E:/PycharmProjects/PythonSelenium/reports'))

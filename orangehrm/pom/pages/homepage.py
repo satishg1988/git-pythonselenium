@@ -1,8 +1,3 @@
-import time
-
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from orangehrm.pom.locators.allpagelocators import AllLocators
@@ -24,8 +19,8 @@ class HomePage(Events):
         self.logout_link = AllLocators.logout_link
 
     # click the welcome username link on home page
-    def clickWelcomeUserLink(self, locator_type="xpath"):
-        self.clickelement(self.welcome_user_link, locator_type)
+    def clickWelcomeUserLink(self):
+        self.clickelement(self.welcome_user_link, locator_type="xpath")
         print("Welcome Successful")
 
     # Get all the header menu options and click the required option
@@ -54,6 +49,12 @@ class HomePage(Events):
     #             break
 
     def clickLogoutLink(self, locator_type="xpath"):
-        self.clickelement(self.welcome_user_link, locator_type)
+        driver = self.driver
+        hp = HomePage(driver)
+        hp.clickWelcomeUserLink()
         self.clickelement(self.logout_link, locator_type)
         print("Logout Successful")
+
+    def verifyWelcomeUser(self, expected_welcome_link_text):
+        actual_welcome_link_text = self.getElementText(self.welcome_user_link, locator_type="xpath")
+        assert expected_welcome_link_text in actual_welcome_link_text

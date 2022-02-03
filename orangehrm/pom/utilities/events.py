@@ -79,7 +79,7 @@ class Events:
         element = self.getelement(locator, locator_type)
         text_received = element.text
         print("Element displayed: " + text_received)
-        return element
+        return text_received
 
     # def getElementsText(self, req_empname, locator, locator_type="id"):
     #     element = self.getElements(locator, locator_type)

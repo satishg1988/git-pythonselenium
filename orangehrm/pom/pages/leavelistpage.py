@@ -52,9 +52,11 @@ class LeaveList(Events):
         mo.clickSubMenuOptions(req_sub_menu)
 
     def click_fromdate_leavelist(self, req_year, req_month, req_day):
-        self.driver.find_element(By.XPATH, self.fromdate_field).click()
+        # self.driver.find_element(By.XPATH, self.fromdate_field).click()
+        self.clickelement(self.fromdate_field, locator_type="xpath")
         # selecting year in from date
-        fromyear = self.driver.find_elements(By.XPATH, self.year_leavelist)
+        # fromyear = self.driver.find_elements(By.XPATH, self.year_leavelist)
+        fromyear = self.getElements(self.year_leavelist, locator_type="xpath")
         print("Total Years: " + str(len(fromyear)))
         for year in fromyear:
             if year.text == req_year:
@@ -64,10 +66,12 @@ class LeaveList(Events):
                 break
         else:
             print(req_year + " not found")
-            self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            # self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            self.clickelement(self.fromdate_field, locator_type="xpath")
 
         # selecting month in from date
-        frommonth = self.driver.find_elements(By.XPATH, self.month_leavelist)
+        # frommonth = self.driver.find_elements(By.XPATH, self.month_leavelist)
+        frommonth = self.getElements(self.month_leavelist, locator_type="xpath")
         print("Total Months: " + str(len(frommonth)))
         for month in frommonth:
             if req_month.casefold() == month.text.casefold():
@@ -76,11 +80,13 @@ class LeaveList(Events):
                 break
         else:
             print(req_month + " not found")
-            self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            # self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            self.clickelement(self.fromdate_field, locator_type="xpath")
         # time.sleep(2)
 
         # click day in from date
-        fromday = self.driver.find_elements(By.XPATH, self.day_leavelist)
+        # fromday = self.driver.find_elements(By.XPATH, self.day_leavelist)
+        fromday = self.getElements(self.day_leavelist, locator_type="xpath")
         print("Total days:" + str(len(fromday)))
         for day in fromday:
             if req_day.casefold() == day.text.casefold():
@@ -92,7 +98,8 @@ class LeaveList(Events):
                 break
         else:
             print(req_day + " not found")
-            self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            # self.driver.find_element(By.XPATH, self.fromdate_field).click()
+            self.clickelement(self.fromdate_field, locator_type="xpath")
         # time.sleep(2)
 
     def click_todate_leavelist(self, req_year, req_month, req_day):

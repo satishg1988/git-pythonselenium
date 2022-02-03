@@ -12,7 +12,6 @@ from orangehrm.pom.pages.leavelistpage import LeaveList
 from orangehrm.pom.pages.loginpage import LoginPage
 from orangehrm.pom.pages.menuoptions import MenuOptions
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
@@ -20,39 +19,45 @@ class TestCases(unittest.TestCase, Data):
 
     # Runs once before all the tests
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         b = Browser
-        b.browserSetUp(cls, "firefox")
+        b.browserSetUp(cls, "Chrome")
         # b.parallelBrowserSetup(cls)
         b.launchUrl(cls, Data.url)
 
-    # Runs once before every test
-    def setUp(self):
+    @pytest.mark.run(order=2)
+    def test_02_toVerifyValidLogin(self):
         driver = self.driver
         lp = LoginPage(driver)
         lp.validLogin(Data.uname, Data.pwd)
-        lp.verifyLoginSuccess()
+        lp.verifyLoginSuccess("Dashboard")
 
-    # @pytest.mark.run(order=1)
-    # def test_validLogin(self):
-    #     driver = self.driver
-    #     lp = LoginPage(driver)
-    #     lp.verifyloginSuccess()
-
-    @pytest.mark.run(order=2)
-    def test_headerLink(self):
+    @pytest.mark.run(order=1)
+    def test_01_toVerifyInValidLogin(self):
         driver = self.driver
-
-        hp = HomePage(driver)
-        hp.clickWelcomeUserLink()
+        lp = LoginPage(driver)
+        lp.inValidLogin()
+        lp.verifyLoginFailure("Username cannot be empty")
 
     @pytest.mark.run(order=3)
-    def test_headerMenuOptions(self):
+    def test_03_toVerifyWelcomeLink(self):
         driver = self.driver
+        lp = LoginPage(driver)
+        hp = HomePage(driver)
+        lp.validLogin(Data.uname, Data.pwd)
+        hp.clickWelcomeUserLink()
+        hp.verifyWelcomeUser("Welcome")
+
+    @pytest.mark.run(order=4)
+    def test_04_headerMenuOptions(self):
+        driver = self.driver
+        lp = LoginPage(driver)
         # hp = HomePage(driver)
         llp = LeaveList(driver)
         # mo = MenuOptions(driver)
+
         # mo.clickHeaderMenuOptions("Leave")
+        lp.validLogin(Data.uname, Data.pwd)
         llp.clickApplyLeaveSubMenu("Leave", "Apply")
         llp.clickAddEntitlementsSubMenu("Leave", "Entitlements", "Add Entitlements")
         llp.clickLeaveListSubMenu("Leave", "Leave List")
@@ -65,17 +70,19 @@ class TestCases(unittest.TestCase, Data):
         llp.clickSearch()
 
     # Runs once after every test
-    def tearDown(self):
-        driver = self.driver
-        hp = HomePage(driver)
-        hp.clickLogoutLink()
+    # def tearDown(self):
+    #     driver = self.driver
+    #     hp = HomePage(driver)
+    #     hp.clickLogoutLink()
 
     # Runs once after all the tests
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         driver = cls.driver
-        cls.driver.close()
-        cls.driver.quit()
+        # hp = HomePage(driver)
+        # hp.clickLogoutLink()
+        driver.close()
+        driver.quit()
 
 
 if __name__ == '__main__':
