@@ -9,19 +9,19 @@ class Browser():
     # def __init__(self, driver):
     #     self.driver = webdriver.Chrome("/Users/sateeshg/PycharmProjects/PythonSelenium/drivers/chromedriver")
     #     self.driver.maximize_window()
-
+    # @classmethod
     def browserSetUp(self, browser):
         if browser.casefold() == "chrome":
-            self.driver = webdriver.Chrome("E:/PycharmProjects/git-pythonselenium/orangehrm/drivers/chromedriver97.exe")
+            self.driver = webdriver.Chrome("/usr/local/google/home/sateeshg/git-pythonselenium/orangehrm/drivers/chromedriver109")
             print("Chrome Browser Launched")
         elif browser.casefold() == "firefox":
-            self.driver = webdriver.Firefox(executable_path="E:/PycharmProjects/git-pythonselenium/orangehrm/drivers/geckodriver")
+            self.driver = webdriver.Firefox(executable_path="/usr/local/google/home/sateeshg/git-pythonselenium/orangehrm/drivers/geckodriver")
             print("Firefox Browser Launched")
         self.driver.maximize_window()
 
     def parallelBrowserSetup(self):
         desired_cap = {
-            'platform': "windows 10",
+            'platform': "Debian GNU/Linux rodete",
             'browserName': "chrome",
         }
         print("Initiating remote driver on platform: " + desired_cap["platform"] + " browser: " + desired_cap["browserName"])
@@ -32,4 +32,4 @@ class Browser():
     def launchUrl(self, url):
         self.driver.get(url)
         print("URL Launch Successful")
-
+        time.sleep(3)

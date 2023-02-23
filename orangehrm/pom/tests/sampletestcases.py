@@ -1,16 +1,20 @@
 import os
 import sys
 import unittest
-
+import allure
+import HtmlTestRunner
 import pytest
 
-from orangehrm.pom.utilities.data import Data
-import HtmlTestRunner
 from orangehrm.pom.browsersetup.browseractions import Browser
 from orangehrm.pom.pages.homepage import HomePage
-from orangehrm.pom.pages.leavelistpage import LeaveList
+from orangehrm.pom.tests.test_homepage import HomePageTest
 from orangehrm.pom.pages.loginpage import LoginPage
-from orangehrm.pom.pages.menuoptions import MenuOptions
+from orangehrm.pom.tests.test_login import LoginTest
+from orangehrm.pom.utilities.data import Data
+from orangehrm.pom.pages.offers import Offers
+from orangehrm.pom.tests.test_offers import OffersTest
+from orangehrm.pom.pages.mybookings import MyBookings
+from orangehrm.pom.pages.getfreerides import GetFreeRides
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -26,67 +30,117 @@ class TestCases(unittest.TestCase, Data):
         b.launchUrl(cls, Data.url)
 
     @pytest.mark.run(order=2)
-    def test_02_toVerifyValidLogin(self):
+    @pytest.mark.login
+    def test_toVerifyValidLogin(self):
         driver = self.driver
-        lp = LoginPage(driver)
-        lp.validLogin(Data.uname, Data.pwd)
-        lp.verifyLoginSuccess("Dashboard")
+
+        lt = LoginTest(driver)
+        lt.validLogin(Data.mobilenumber, "We have sent the verification code to")
 
     @pytest.mark.run(order=1)
-    def test_01_toVerifyInValidLogin(self):
+    @pytest.mark.login
+    def test_toVerifyInValidLoginWhenMobileNumberIsEmpty(self):
         driver = self.driver
-        lp = LoginPage(driver)
-        lp.inValidLogin()
-        lp.verifyLoginFailure("Username cannot be empty")
 
+        lt = LoginTest(driver)
+        lt.inValidLoginWhenMobileNumberEmpty("Please enter valid mobile number")
+
+    @pytest.mark.login
     @pytest.mark.run(order=3)
-    def test_03_toVerifyWelcomeLink(self):
+    def test_toVerifyInValidLoginWhenMobileNumberIsInvalid(self):
         driver = self.driver
-        lp = LoginPage(driver)
-        hp = HomePage(driver)
-        lp.validLogin(Data.uname, Data.pwd)
-        hp.clickWelcomeUserLink()
-        hp.verifyWelcomeUser("Welcome")
 
+        lt = LoginTest(driver)
+        lt.inValidLoginWhenMobileNumberInvalid(Data.invalid_mobile_number, "Please enter valid mobile number")
+
+    @pytest.mark.login
     @pytest.mark.run(order=4)
-    def test_04_headerMenuOptions(self):
+    def test_toVerifyDefaultStatusOfGetFreeRideCheckbox(self):
         driver = self.driver
-        lp = LoginPage(driver)
-        # hp = HomePage(driver)
-        llp = LeaveList(driver)
-        # mo = MenuOptions(driver)
 
-        # mo.clickHeaderMenuOptions("Leave")
-        lp.validLogin(Data.uname, Data.pwd)
-        llp.clickApplyLeaveSubMenu("Leave", "Apply")
-        llp.clickAddEntitlementsSubMenu("Leave", "Entitlements", "Add Entitlements")
-        llp.clickLeaveListSubMenu("Leave", "Leave List")
-        # llp.click_fromdate_leavelist("1994", "SEP", "11")
-        llp.selectFromDateLeaveList("1994", "Sep", "11")
-        # llp.click_todate_leavelist("2021", "JUN", "22")
-        llp.selectToDateLeaveList("2021", "JUN", "22")
-        llp.selectLeaveStatus()
-        llp.searchEmployeeName("te", "Garry White")
-        llp.selectSubUnit('  Sales')
-        llp.selectPastEmployees()
-        llp.clickSearch()
+        lt = LoginTest(driver)
+        lt.verifyFirstRideFreeCheckBox(False)
+
+    @pytest.mark.login
+    @pytest.mark.run(order=5)
+    def test_toClickGoogleLink(self):
+        driver = self.driver
+        lt = LoginTest(driver)
+        lt.verifyClickLoginWithGoogleLink()
+
+    @pytest.mark.mybookings
+    @pytest.mark.run(order=6)
+    def test_03_toVerifyPrintBookings(self):
+        driver = self.driver
+        mb = MyBookings(driver)
+        mb.clickPrintBookingsHeaderOption()
+
+    @pytest.mark.mybookings
+    @pytest.mark.run(order=7)
+    def test_toVerifyCancelBooking(self):
+        driver = self.driver
+        mb = MyBookings(driver)
+        mb.clickCancelBookingHeaderOption()
+
+    @pytest.mark.offers
+    @pytest.mark.run(order=8)
+    def test_toVerifyUserIsOnOffersPage(self):
+        driver = self.driver
+        ot = OffersTest(driver)
+        ot.verifyTextOfBusBookingsOfferHeading("Bus Booking Offers")
+
+    @pytest.mark.getfreerides
+    @pytest.mark.run(order=9)
+    def test_toVerifyUserIsOnGetFreeRidesPage(self):
+        driver = self.driver
+        gfr = GetFreeRides(driver)
+        gfr.clickGetFreeRidesHeaderOption()
+
+    @pytest.mark.homepage
+    @pytest.mark.run(order=10)
+    def test_toVerifySourceCity(self):
+        driver = self.driver
+        hpt = HomePageTest(driver)
+        hpt.verifySourceCity("elu", "Eluru")
+
+    def test_toVerifyDestinationCity(self):
+        driver = self.driver
+        hpt = HomePageTest(driver)
+        hpt.verifyDestinationCity("hyd", "Hyderabad")
+
+    def test_toVerifyUserSelectsValidDate(self):
+        driver = self.driver
+        hpt = HomePageTest(driver)
+        hpt.verifyUserSelectsValidDate("first", "last", "March", "2023", "9")
+
+    def test_toVerifySearchBuses(self):
+        driver = self.driver
+        hpt = HomePageTest(driver)
+        hpt.verifySearchBuses("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "February", "2023", "16")
+
+    def test_toVerifyBusPartnersList(self):
+        driver = self.driver
+        hpt = HomePageTest(driver)
+        hpt.verifyBusPartnersList("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "February", "2023", "18",
+                                  "KKaveri Travels", "NON-AC Seater (2 + 2)")
 
     # Runs once after every test
-    # def tearDown(self):
-    #     driver = self.driver
-    #     hp = HomePage(driver)
-    #     hp.clickLogoutLink()
-
-    # Runs once after all the tests
-    @classmethod
-    def tearDown(cls):
-        driver = cls.driver
-        # hp = HomePage(driver)
-        # hp.clickLogoutLink()
+    def tearDown(self):
+        driver = self.driver
         driver.close()
         driver.quit()
+
+    # Runs once after all the tests
+    # @classmethod
+    # def tearDown(cls):
+    #     driver = cls.driver
+    # hp = HomePage(driver)
+    # hp.clickLogoutLink()
+    # driver.close()
+    # driver.quit()
 
 
 if __name__ == '__main__':
     unittest.main(
-        testRunner=HtmlTestRunner.HTMLTestRunner(output='E:/PycharmProjects/git-pythonselenium/orangehrm/reports'))
+        testRunner=HtmlTestRunner.HTMLTestRunner(
+            output="/usr/local/google/home/sateeshg/git-pythonselenium/orangehrm/reports"))

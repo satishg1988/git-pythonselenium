@@ -49,6 +49,7 @@ class Events:
         return element
 
     def clickelement(self, locator, locator_type="id"):
+        element = None
         try:
             element = self.getelement(locator, locator_type)
             element.click()
@@ -58,6 +59,7 @@ class Events:
         return element
 
     def clearelement(self, locator, locator_type="id"):
+        element = None
         try:
             element = self.getelement(locator, locator_type)
             element.clear()
@@ -81,41 +83,66 @@ class Events:
         print("Element displayed: " + text_received)
         return text_received
 
-    # def getElementsText(self, req_empname, locator, locator_type="id"):
+    # def getElementsText(self, locator, locator_type="id"):
+    #     ele_text = None
     #     element = self.getElements(locator, locator_type)
     #     for ele in element:
     #         ele_text = ele.text
-    #         print("Elements received are: " + ele_text)
-    #         if req_empname == ele_text:
-    #             print("Element present in the list: " + ele_text)
-    #             # ele.click()
-    #             break
-    #     return element
+    #     return ele_text
 
     def selectElementByVisibleText(self, req_dropdown_value, locator, locator_type="id"):
-        select_subunit = Select(self.getelement(locator, locator_type))
-        select_subunit.select_by_visible_text(req_dropdown_value)
+        select_element = Select(self.getelement(locator, locator_type))
+        select_element.select_by_visible_text(req_dropdown_value)
+
+    def selectElementsByVisibleText(self, req_dropdown_value, locator, locator_type="id"):
+        select_element = Select(self.getElements(locator, locator_type))
+        select_element.select_by_visible_text(req_dropdown_value)
+
+    def isElementDisplayed(self, locator, locator_type="id"):
+        element_displayed = None
+        try:
+            element = self.getelement(locator, locator_type)
+            element_displayed = element.is_displayed()
+        except:
+            print("")
+        return element_displayed
 
     def getTitle(self):
         return self.driver.title
 
-    def verifyTextContains(self, actual_text, expected_text):
+    def textContains(self, actual_text, expected_text):
         if actual_text.casefold() in expected_text.casefold():
             print("Verification Pass")
             return True
         else:
-            return False
             print("verification Failed")
+            return False
 
-    # def waitelement(self, locator, locator_type="id"):
-    #     element = None
-    #     try:
-    #         bytype = self.bytype(locator_type)
-    #         wait = WebDriverWait(self.driver, 20, poll_frequency=1,
-    #                              ignored_exceptions=[NoSuchElementException, ElementNotVisibleException,
-    #                                                  ElementNotSelectableException])
-    #         element = wait.until(EC.element_to_be_clickable(bytype))
-    #         print("From waitelement: Element found")
-    #     except:
-    #         print("From waitelement: Element not found")
-    #     return element
+    def waitElementToBeClickable(self, wait_time, locator, locator_type="id"):
+        element = None
+        try:
+            by_type = self.bytype(locator_type)
+            wait = WebDriverWait(self.driver, wait_time, poll_frequency=1,
+                                 ignored_exceptions=[NoSuchElementException, ElementNotVisibleException, ElementNotSelectableException])
+            element = wait.until(EC.element_to_be_clickable((by_type, locator)))
+            print("From waitelement: Element found")
+        except:
+            print("From waitelement: Element not found")
+        return element
+
+    def waitForPresenceOfElement(self, wait_time, locator, locator_type="id"):
+        element = None
+        try:
+            by_type = self.bytype(locator_type)
+            wait = WebDriverWait(self.driver, wait_time, poll_frequency=1,
+                                 ignored_exceptions=[NoSuchElementException, ElementNotVisibleException, ElementNotSelectableException])
+            element = wait.until(EC.presence_of_element_located((by_type, locator)))
+            print("From waitelement: Element found")
+        except:
+            print("From waitelement: Element not found")
+        return element
+
+    def isElementSelected(self, locator, locator_type="id"):
+        element = self.getelement(locator, locator_type)
+        element_selected = element.is_selected()
+        return element_selected

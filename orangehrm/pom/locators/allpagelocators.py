@@ -1,33 +1,59 @@
 class AllLocators:
-    # All locators from the Orange HRM login page
-    username_textbox = "//input[@id='txtUsername']"
-    password_textbox = "//input[@id='txtPassword']"
-    login_button = "btnLogin"
-    username_textbox_empty = "//span[text()='Username cannot be empty']"
-    password_textbox_empty = "//span[text()='Password cannot be empty']"
+    # All locators from the AbhiBus login page
+    login_or_register_link = "//span[@id='AccLogin']"
+    close_icon = "//div[@class='close']"
+    mobile_num_textbox = "//input[@id='mobileNo']"
+    login_signup_otp_button = "//input[@value='Login/Signup with OTP']"
+    login_with_google_button = "//a[@id='customBtn']//span[text() = 'Google ']"
+    otp_request_message = "//input[@id='mobileNo']//parent::div//div[@class='errortxt']"
+    otp_sent_success_message = "//div[@class='formData']//form//div[@id='Succ-Otpmsg']"
+    error_msg_mobile_empty = "//input[@id='mobileNo']//..//div"
+    error_msg_mobile_invalid = "//input[@id='mobileNo']//..//div"
+    get_first_ride_free_checkbox = "//span[text()='Get First Ride FREE ']//..//input[@id='chk_refer_code']"
 
-    # All locators on the Orange HRM landing page
-    title = "//h1[text()='Dashboard']"
-    welcome_user_link = "//a[@id='welcome']"
-    logout_link = "//a[contains(text(), 'Logout')]"
-    header_menu_options = "//ul[@id='mainMenuFirstLevelUnorderedList']//b"
-    sub_menu_options = "//a[@class='firstLevelMenu']//parent::li//ul//a"
-    # current_submenu_options = "//li[@class='current main-menu-first-level-list-item']//ul//a[@class='arrow']"
-    header_leave_link = "//a[@id='menu_leave_viewLeaveModule']"
-    leave_list_link = "//a[text()='Leave List']"
-    add_entitlements = "Add Entitlements"
-    # //a[@id='menu_leave_viewLeaveModule']/parent::li/ul/li/a[text()='Leave List']
+    # All locators from the Home Page
+    bus_link = "pills-home-tab"
+    trains_link = "pills-profile-tab"
+    hotels_link = "pills-contact-tab"
+    rentals_link = "pills-rental-tab"
+    leaving_from_textbox = "//label[text()='Leaving from']//..//input[@id='source']"
+    source_cities_list = "//ul[@id='ui-id-1']//li"
+    going_to_textbox = "//label[text()='Going to']//..//input[@id='destination']"
+    destination_cities_list = "//ul[@id='ui-id-2']//li"
+    date_of_journey_field = "//label[text()='Date of Journey']//..//input[@id='datepicker1']"
+    # day_field = "//div[@class='ui-datepicker-title']//span[text()='"
+    # day_field_xpath = "']//..//..//..//table//a"
+    # months_list = "//div[@class='ui-datepicker-title']"
+    # years_list = "//span[@class='ui-datepicker-year']"
 
-    # All locators on the Leave-->Leave List page
-    fromdate_field = "//input[@id='calFromDate']/following-sibling::img"
-    todate_field = "//input[@id='calToDate']/following-sibling::img"
-    year_leavelist = "//select[@data-handler='selectYear']//option"
-    month_leavelist = "//select[@data-handler='selectMonth']//option"
-    day_leavelist = "//div[@id='ui-datepicker-div']//tr//a"
-    leavestatus_checkbox = "//div[@class='checkbox_group label_first']/label[text()='All']"
-    employee_searchbox = "//input[@id='leaveList_txtEmployee_empName']"
-    employee_names = "//div[@class='ac_results']//li"
-    subunit_dropdown = "//select[@id='leaveList_cmbSubunit']"
-    past_employees_checkbox = "//input[@id='leaveList_cmbWithTerminated']"
-    search_button = "//input[@id='btnSearch']"
-    # past_employees_checkbox = "//label[text()='Include Past Employees']"
+    month_group_pre_xpath = "//div[@class='ui-datepicker-group ui-datepicker-group-"
+    month_group_post_xpath = "']//span[@class='ui-datepicker-month']"
+    year_group_pre_xpath = "//div[@class='ui-datepicker-group ui-datepicker-group-"
+    year_group_post_xpath = "']//span[@class='ui-datepicker-year']"
+    days_group_pre_xpath = "//div[@class='ui-datepicker-group ui-datepicker-group-"
+    days_group_post_xpath = "']//table[@class='ui-datepicker-calendar']//td//a"
+
+    previous_icon = "//a[@title='Prev']"
+    next_icon = "//a[@title='Next']"
+    search_button = "Search"
+    select_seat_xpath_part_one = "//div[@class='search-column1']//h2[@title='"
+    select_seat_xpath_part_two = "']//..//p[@title='"
+    select_seat_xpath_part_three = "']//..//..//..//div[@class='col3 booksts clearfix']//span[@class='book']"
+    expand_icon = "ShowBtnHide11"
+    bus_partners_list = "//div[@class='search-column1']//h2"
+    bus_partners_type_list = "//div[ @class ='search-column1']//h2//..//p"
+    select_seat_button = "//a[@class='btn-seatselect book1']"
+
+    # //div[ @class ="search-column1"] // h2[@ title="Orange Tours and Travels"] //..// p[@ title="VOLVO AC Multi Axle Sleeper (2 + 1)"]
+
+    # All locators from the My Bookings Page
+    my_bookings_header_option = "//a[contains(text(), 'My Bookings')]"
+    print_booking_header_option = "//a[contains(text(), 'Print Booking')]"
+    cancel_booking_header_option = "//a[contains(text(), 'Cancel Booking')]"
+
+    # All locators from the Offers Page
+    offers_header_option = "//ul[@class='navbar-nav ml-auto']//a[contains(text(), 'Offers')]"
+    bus_bookings_offer_heading = "//div[@class='container']//..//h1"
+
+    # All locators from the Get Free Rides Page
+    get_free_rides_header_option = "//ul[@class='navbar-nav ml-auto']//a[contains(text(), 'Get Free Rides')]"
