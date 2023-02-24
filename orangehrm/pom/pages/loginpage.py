@@ -32,6 +32,7 @@ class LoginPage(Events):
     def enterMobileNumber(self, mobilenumber, locator_type="xpath"):
         self.waitForPresenceOfElement(3, self.mobile_num_textbox, locator_type)
         self.sendkeyselement(mobilenumber, self.mobile_num_textbox, locator_type)
+        time.sleep(3)
 
     def clickLoginOrSignupButton(self, locator_type="xpath"):
         # self.waitElementToBeClickable(10, self.login_signup_otp_button, locator_type)
@@ -65,30 +66,3 @@ class LoginPage(Events):
         checkbox_actual_status = self.isElementSelected(self.get_first_ride_free_checkbox, locator_type)
         print(checkbox_actual_status)
         assert checkbox_actual_status == checkbox_default_status
-
-    # def validLogin(self, mobilenumber, otp_sent_message):
-    #     driver = self.driver
-    #     lp = LoginPage(driver)
-    #     lp.clickLoginLink()
-    #     lp.enterMobileNumber(mobilenumber)
-    #     lp.clickLoginOrSignupButton()
-    #     # lp.getOtpRequestMessageText(otp_request_message)
-    #     lp.getOtpSentMessageText(otp_sent_message)
-    #
-    # def inValidLoginWhenMobileNumberEmpty(self, expected_error_message, empty_mobile_number=""):
-    #     driver = self.driver
-    #     lp = LoginPage(driver)
-    #
-    #     lp.clickLoginLink()
-    #     lp.enterMobileNumber(empty_mobile_number)
-    #     lp.clickLoginOrSignupButton()
-    #     lp.getErrorMessageWhenMobileIsEmpty(expected_error_message)
-    #
-    # def inValidLoginWhenMobileNumberInvalid(self, invalid_mobile_number, expected_error_message):
-    #     driver = self.driver
-    #     lp = LoginPage(driver)
-    #
-    #     lp.clickLoginLink()
-    #     lp.enterMobileNumber(invalid_mobile_number)
-    #     lp.clickLoginOrSignupButton()
-    #     lp.getErrorMessageWhenMobileIsInvalid(expected_error_message)

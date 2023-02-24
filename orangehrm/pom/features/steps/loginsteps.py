@@ -23,11 +23,44 @@ def clickLogin(context):
     lp.clickLoginLink()
 
 
-@then('Enter Mobile number "9010682626"')
+@then('Enter a valid Mobile number')
 def enterMobile(context):
     driver = context.driver
     lp = LoginPage(driver)
     lp.enterMobileNumber(Data.mobilenumber)
+
+
+@then('Enter Mobile number is empty')
+def enterEmptyMobileNumber(context):
+    driver = context.driver
+    lp = LoginPage(driver)
+    # lp.clickLoginLink()
+    lp.enterMobileNumber(mobilenumber="")
+    # lp.getErrorMessageWhenMobileIsEmpty("Please enter valid mobile number")
+
+
+@then('Error message is displayed when mobile number is empty')
+def errorMessageWhenEmptyMobileNumber(context):
+    driver = context.driver
+    lp = LoginPage(driver)
+    # lp.enterMobileNumber("9010")
+    lp.getErrorMessageWhenMobileIsEmpty("Please enter valid mobile number")
+
+
+@then('Enter an invalid mobile number "{mobilenumber}"')
+def enterInvalidMobileNumber(context, mobilenumber):
+    driver = context.driver
+    lp = LoginPage(driver)
+    lp.enterMobileNumber(mobilenumber)
+    # lp.getErrorMessageWhenMobileIsInvalid("Please enter valid mobile number")
+
+
+@then('Error message is displayed when mobile number is invalid')
+def errorMessageWhenInvalidMobileNumber(context):
+    driver = context.driver
+    lp = LoginPage(driver)
+    # lp.enterMobileNumber("9010")
+    lp.getErrorMessageWhenMobileIsInvalid("Please enter valid mobile number")
 
 
 @then('Click the Login or Signup button')
