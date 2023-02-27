@@ -32,22 +32,24 @@ class LoginPage(Events):
     def enterMobileNumber(self, mobilenumber, locator_type="xpath"):
         self.waitForPresenceOfElement(3, self.mobile_num_textbox, locator_type)
         self.sendkeyselement(mobilenumber, self.mobile_num_textbox, locator_type)
-        time.sleep(3)
+        # time.sleep(3)
 
     def clickLoginOrSignupButton(self, locator_type="xpath"):
         # self.waitElementToBeClickable(10, self.login_signup_otp_button, locator_type)
-        self.waitForPresenceOfElement(10, self.login_signup_otp_button, locator_type)
+        self.waitForPresenceOfElement(5, self.login_signup_otp_button, locator_type)
         self.clickelement(self.login_signup_otp_button, locator_type)
-        time.sleep(5)
+        time.sleep(2)
 
     def clickLoginWithGoogleButton(self, locator_type="xpath"):
         self.waitElementToBeClickable(5, self.login_with_google_button, locator_type)
         self.clickelement(self.login_with_google_button, locator_type)
-        time.sleep(5)
+        # time.sleep(5)
 
     def getOtpRequestMessageText(self, otp_request_message, locator_type="xpath"):
+        self.waitForPresenceOfElement(5, self.otp_request_message, locator_type)
         actual_text = self.getElementText(self.otp_request_message, locator_type)
-        assert actual_text.casefold == otp_request_message.casefold, "FAIL: Actual Text not matched the Expected Text"
+        print("Actual message is: " + actual_text)
+        assert actual_text.casefold() == otp_request_message.casefold(), "FAIL: Actual Text not matched the Expected Text"
 
     def getOtpSentMessageText(self, otp_sent_message, locator_type="xpath"):
         actual_text = self.getElementText(self.otp_sent_success_message, locator_type)
@@ -55,7 +57,8 @@ class LoginPage(Events):
 
     def getErrorMessageWhenMobileIsEmpty(self, expected_error_message, locator_type="xpath"):
         actual_error_message = self.getElementText(self.error_msg_mobile_empty, locator_type)
-        assert actual_error_message == expected_error_message
+        print("Actual Error Message - Empty: " + actual_error_message)
+        assert actual_error_message.casefold() == expected_error_message.casefold()
 
     def getErrorMessageWhenMobileIsInvalid(self, expected_error_message, locator_type="xpath"):
         actual_error_message = self.getElementText(self.error_msg_mobile_invalid, locator_type)

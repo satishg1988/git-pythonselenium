@@ -11,6 +11,7 @@ Feature: validate the login feature
     Then Click on the Login link
     And Enter a valid Mobile number
     And Click the Login or Signup button
+    And OTP request message to be displayed
     Then Close the browser
 
   @invalid_login
@@ -22,12 +23,12 @@ Feature: validate the login feature
     Then Close the browser
     Examples:
       | mobilenumber |
-      | 123     |
+      | 00123423     |
       | 901068         |
 
  Scenario: Login with empty mobile number
    Then Click on the Login link
     And Enter Mobile number is empty
-    And Error message is displayed when mobile number is empty
     And Click the Login or Signup button
+    And Error message is displayed when mobile number is empty
     Then Close the browser

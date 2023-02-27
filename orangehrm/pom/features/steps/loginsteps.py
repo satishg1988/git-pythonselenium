@@ -39,6 +39,13 @@ def enterEmptyMobileNumber(context):
     # lp.getErrorMessageWhenMobileIsEmpty("Please enter valid mobile number")
 
 
+@then('OTP request message to be displayed')
+def otpRequestMessage(context):
+    driver = context.driver
+    lp = LoginPage(driver)
+    lp.getOtpRequestMessageText("Your OTP request will be proccessed.")
+
+
 @then('Error message is displayed when mobile number is empty')
 def errorMessageWhenEmptyMobileNumber(context):
     driver = context.driver
