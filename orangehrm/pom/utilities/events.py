@@ -80,7 +80,7 @@ class Events:
     def getElementText(self, locator, locator_type="id"):
         element = self.getelement(locator, locator_type)
         text_received = element.text
-        print("Element displayed: " + text_received)
+        print("Text received is : " + text_received)
         return text_received
 
     # def getElementsText(self, locator, locator_type="id"):
@@ -104,7 +104,7 @@ class Events:
             element = self.getelement(locator, locator_type)
             element_displayed = element.is_displayed()
         except:
-            print("")
+            print("Element display failed")
         return element_displayed
 
     def getTitle(self):

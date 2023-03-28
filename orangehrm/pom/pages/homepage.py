@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.support.ui import WebDriverWait
 from orangehrm.pom.locators.allpagelocators import AllLocators as AL
 from orangehrm.pom.utilities.events import Events
@@ -33,8 +35,11 @@ class HomePage(Events):
         self.select_seat_xpath_part_two = AL.select_seat_xpath_part_two
         self.select_seat_xpath_part_three = AL.select_seat_xpath_part_three
         self.bus_partners_list = AL.bus_partners_list
-        self.bus_partners_type_list = AL.bus_partners_type_list
-        self.select_seat_button = AL.select_seat_button
+        # self.bus_partners_type_list = AL.bus_partners_type_list
+        # self.select_seat_button = AL.select_seat_button
+        self.seats_list = AL.seats_list
+        self.show_icon = AL.show_icon
+        self.hide_icon = AL.hide_icon
 
     # click the welcome username link on home page
     def clickBusLink(self, locator_type="id"):
@@ -83,14 +88,18 @@ class HomePage(Events):
             all_days_final_xpath = self.days_group_pre_xpath + req_group_name + self.days_group_post_xpath
             all_days_list = self.getElements(all_days_final_xpath, locator_type)
             for day in all_days_list:
-                print("Days Are: " + day.text)
-                # print("Days Status: " + str(day.is_enabled()))
-                if day.text.casefold() == req_day.casefold():
-                    # self.action.move_to_element(day).click().perform()
-                    day.click()
-                    # date_of_journey = self.getelement(self.date_of_journey_field, locator_type)
-                    # print("Selected Date Is: " + date_of_journey.get_attribute("name"))
-                    break
+                print("Day is: " + day.text)
+                print("Day Status is: " + str(day.is_enabled()))
+                try:
+                    if day.text.casefold() == req_day.casefold():
+                        # self.action.move_to_element(day).click().perform()
+                        day.click()
+                        # date_of_journey = self.getelement(self.date_of_journey_field, locator_type)
+                        # print("Selected Date Is: " + date_of_journey.get_attribute("name"))
+                        break
+                except:
+                    print(req_day + ": is not available")
+
                     # return True
         return False
 
@@ -111,27 +120,54 @@ class HomePage(Events):
             hp.clickDate(req_group_name2, expected_month, expected_year, req_day)
 
     def clickSearchButton(self, locator_type="linktext"):
-        # self.waitElementToBeClickable(5, self.search_button, locator_type)
+        self.waitElementToBeClickable(5, self.search_button, locator_type)
         self.clickelement(self.search_button, locator_type)
 
-    def getBusPartnersList(self, req_bus_partner, req_bus_partner_type, locator_type="xpath"):
-        self.waitForPresenceOfElement(5, self.bus_partners_list, locator_type)
-        bus_partners = self.getElements(self.bus_partners_list, locator_type)
-        bus_partners_type = self.getElements(self.bus_partners_type_list, locator_type)
+    # def getBusPartnersList(self, req_bus_partner, req_bus_partner_type, locator_type="xpath"):
+    #     self.waitForPresenceOfElement(5, self.bus_partners_list, locator_type)
+    #     bus_partners = self.getElements(self.bus_partners_list, locator_type)
+    #     bus_partners_type = self.getElements(self.bus_partners_type_list, locator_type)
+    #
+    #     for bus_partner in bus_partners:
+    #         print("Bus Partner  : " + bus_partner.text)
+    #         if bus_partner.text.casefold() == req_bus_partner.casefold():
+    #             for bus_partner_type in bus_partners_type:
+    #                 print("Bus Partner Type : " + bus_partner_type.text)
+    #                 if bus_partner_type.text.casefold() == req_bus_partner_type.casefold():
+    #                     print("Actual " + bus_partner_type.text + " and req bus partner type " + req_bus_partner_type + "are equal")
+    #                     self.clickelement(self.select_seat_button, locator_type)
+    #                     break
+    #
+    # def getBusPartnersTypeList(self, locator_type="xpath"):
+    #     self.getElements(self.bus_partners_type_list, locator_type)
 
-        for bus_partner in bus_partners:
-            print("Bus Partner  : " + bus_partner.text)
-            if bus_partner.text.casefold() == req_bus_partner.casefold():
-                for bus_partner_type in bus_partners_type:
-                    print("Bus Partner Type : " + bus_partner_type.text)
-                    if bus_partner_type.text.casefold() == req_bus_partner_type.casefold():
-                        print("Actual " + bus_partner_type.text + " and req bus partner type " + req_bus_partner_type + "are equal")
-                        self.clickelement(self.select_seat_button, locator_type)
-                        break
-
-    def getBusPartnersTypeList(self, locator_type="xpath"):
-        self.getElements(self.bus_partners_type_list, locator_type)
-
-    def selectSeat(self, req_bus_partner, req_bus_partner_type, locator_type="xpath"):
+    def clickSelectSeatButton(self, req_bus_partner, req_bus_partner_type, locator_type="xpath"):
         select_seat_final_xpath = self.select_seat_xpath_part_one + req_bus_partner + self.select_seat_xpath_part_two + req_bus_partner_type + self.select_seat_xpath_part_three
+        # select_seat_element = self.getelement(select_seat_final_xpath, locator_type)
+        # print("Select Seat Element is: " + str(select_seat_element))
+        # self.waitForPresenceOfElement(5, select_seat_final_xpath, locator_type)
+        self.waitElementToBeClickable(5, select_seat_final_xpath, locator_type)
+
+        # self.action.move_to_element(select_seat_element).click().perform()
+        # self.action.scroll_to_element(select_seat_element)
+        self.action.scroll_by_amount(0, 100)
         self.clickelement(select_seat_final_xpath, locator_type)
+
+    def getSeatsList(self, locator_type="xpath"):
+        self.waitForPresenceOfElement(5, self.seats_list, locator_type)
+        # self.getElementText(self.seats_list, locator_type)
+        self.clickelement(self.seats_list, locator_type)
+        time.sleep(5)
+
+        # seats_list = self.getElements(self.seats_list, locator_type)
+        # for seat in seats_list:
+        #     print("Seats Are: " + seat.text)
+        #     if seat.is_enabled():
+        #         print("Seat Status is: " + str(seat.is_enabled()))
+        #         seat.click()
+
+    def clickShowIcon(self, locator_type="css"):
+        if self.isElementDisplayed(self.show_icon, locator_type):
+            self.waitElementToBeClickable(5, self.show_icon, locator_type)
+            self.clickelement(self.show_icon, locator_type)
+            time.sleep(5)

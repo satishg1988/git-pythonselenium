@@ -4,7 +4,7 @@ Feature: validate the login feature
     When Open the URL https://www.abhibus.com/ website
 #    Then The login portal has been opened
 
-  @valid_login
+  @valid_login @Login
   Scenario: Login with valid credentials
 #    Given Launch the browser
 #    When Open the URL https://www.abhibus.com/ website
@@ -14,7 +14,7 @@ Feature: validate the login feature
     And OTP request message to be displayed
     Then Close the browser
 
-  @invalid_login
+  @invalid_login @Login
  Scenario Outline: Login with invalid mobile number
     Then Click on the Login link
     And Enter an invalid mobile number "<mobilenumber>"
@@ -26,6 +26,8 @@ Feature: validate the login feature
       | 00123423     |
       | 901068         |
 
+
+  @invalid_login
  Scenario: Login with empty mobile number
    Then Click on the Login link
     And Enter Mobile number is empty

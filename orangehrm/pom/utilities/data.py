@@ -10,4 +10,3 @@ class Data:
     # uname = line[1].split("\t")[1]
     # pwd = line[2].split("\t")[1]
     file.close()
-

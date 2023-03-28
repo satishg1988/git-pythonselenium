@@ -31,7 +31,7 @@ class AllLocators:
     year_group_pre_xpath = "//div[@class='ui-datepicker-group ui-datepicker-group-"
     year_group_post_xpath = "']//span[@class='ui-datepicker-year']"
     days_group_pre_xpath = "//div[@class='ui-datepicker-group ui-datepicker-group-"
-    days_group_post_xpath = "']//table[@class='ui-datepicker-calendar']//td//a"
+    days_group_post_xpath = "']//table[@class='ui-datepicker-calendar']//td"
 
     previous_icon = "//a[@title='Prev']"
     next_icon = "//a[@title='Next']"
@@ -39,12 +39,31 @@ class AllLocators:
     select_seat_xpath_part_one = "//div[@class='search-column1']//h2[@title='"
     select_seat_xpath_part_two = "']//..//p[@title='"
     select_seat_xpath_part_three = "']//..//..//..//div[@class='col3 booksts clearfix']//span[@class='book']"
-    expand_icon = "ShowBtnHide11"
-    bus_partners_list = "//div[@class='search-column1']//h2"
-    bus_partners_type_list = "//div[ @class ='search-column1']//h2//..//p"
-    select_seat_button = "//a[@class='btn-seatselect book1']"
+    seats_list = "//a[contains(@href, 'OU6')]"
+    # "//div[@class='borderdtd']//li//a"
 
-    # //div[ @class ="search-column1"] // h2[@ title="Orange Tours and Travels"] //..// p[@ title="VOLVO AC Multi Axle Sleeper (2 + 1)"]
+    expand_icon_tsrtc = "ShowBtnHide11"
+    # bus_partners_list = "//div[@class='search-column1']//h2"
+    # bus_partners_type_list = "//div[ @class ='search-column1']//h2//..//p"
+    # select_seat_button = "//a[@class='btn-seatselect book1']"
+    show_icon = "span.ShowBtnHide1"
+    hide_icon = "span.ShowBtnHide2"
+
+    # All locator from the "Filters" - left panel
+    price_drop_checkbox = "//span[contains(text(), 'Price Drop')]//..//input[@type='checkbox']"
+    bus_type_filters = "//div[@class='f-bustype-sec']//li"
+    clearall_bustype = "//div[ @class ='f-bus-type']//small"
+    expand_collapse_bus_partner = "//parent::span[contains(text(), 'Bus Partner')]"
+    bus_partner_searchbox = "//div[@class='f-operator-type']//div[@class='f-operator-checkbox2']//input[@placeholder='Search for Bus Partner']"
+    bus_partners_list = "//div[@class='f-operator-type']//div[@class='f-operator-checkbox filter-list']//li//label"
+    boarding_point_expand_collapse = "//span[contains(text(), 'Boarding Point')]"
+    boarding_point_searchbox = "//input[@placeholder='Search for Boarding Point']"
+    boarding_points_list = "//div[@class='f-boarding-point']//div[@class='f-b-p-search filter-list']//li//label"
+    dropping_point_expand_collapse = "//span[contains(text(), 'Dropping Point')]"
+    dropping_point_searchbox = "//input[@placeholder='Search for Dropping Point']"
+    dropping_points_list = "//div[@class='f-dropping-point']//div[@class='f-d-p-search filter-list']//li//label"
+    depature_time_filters = "//div[@class='f-depature-sec']//li"
+
 
     # All locators from the My Bookings Page
     my_bookings_header_option = "//a[contains(text(), 'My Bookings')]"

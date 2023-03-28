@@ -2,7 +2,12 @@
   <dictionary name="sateeshg">
     <words>
       <w>autosearchbox</w>
+      <w>buspartner</w>
+      <w>bustype</w>
+      <w>clearall</w>
       <w>closebutton</w>
+      <w>depature</w>
+      <w>downarrow</w>
       <w>elurpatti</w>
       <w>eluru</w>
       <w>frommonths</w>
@@ -13,10 +18,12 @@
       <w>noof</w>
       <w>pastemp</w>
       <w>pastemployees</w>
+      <w>pricedrop</w>
       <w>rightpanel</w>
       <w>tomonths</w>
       <w>topbar</w>
       <w>toyears</w>
+      <w>uparrow</w>
       <w>userdropdown</w>
     </words>
   </dictionary>
