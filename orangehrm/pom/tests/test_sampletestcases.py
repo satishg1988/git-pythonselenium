@@ -123,54 +123,54 @@ class TestCases(unittest.TestCase, Data):
     def test_toVerifyUserSelectsValidDate(self):
         driver = self.driver
         hpt = HomePageTest(driver)
-        hpt.verifyUserSelectsValidDate("first", "last", "March", "2023", "14")
+        hpt.verifyUserSelectsValidDate("first", "last", "March", "2023", "31")
 
     @pytest.mark.skip
     def test_toVerifySearchBuses(self):
         driver = self.driver
         hpt = HomePageTest(driver)
-        hpt.verifySearchBuses("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "16")
+        hpt.verifySearchBuses("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31")
 
     # @pytest.mark.skip
     def test_toVerifySelectSeat(self):
         driver = self.driver
         hpt = HomePageTest(driver)
-        hpt.verifySelectSeat("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "27",
+        hpt.verifySelectSeat("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31",
                              "Dharani Tours and Travels", "NON-AC Seater/Sleeper (2 + 1)")
 
     def test_toVerifyClickShowIcon(self):
         driver = self.driver
         hpt = HomePageTest(driver)
-        hpt.verifyShowIcon("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "15")
+        hpt.verifyShowIcon("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31")
 
     def test_toVerifyPriceDropIsSelected(self):
         driver = self.driver
         hpt = HomePageTest(driver)
-        hpt.verifyPriceDropIsSelected("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "15")
+        hpt.verifyPriceDropIsSelected("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31")
 
     def test_toVerifyUserSelectsBusType(self):
         lpt = LeftPanelTest(driver=self.driver)
-        lpt.verifyBusType("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "17", ["AC", "SLEEPER"])
+        lpt.verifyBusType("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31", ["AC", "SLEEPER"])
 
     def test_toVerifyUserSelectsReqBusPartners(self):
         lpt = LeftPanelTest(driver=self.driver)
-        lpt.verifyBusPartner("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "20",
+        lpt.verifyBusPartner("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31",
                              "or", ["Orange Tours and Travels", "APSRTC", "morning star travels"])
 
     def test_toVerifyBoardingPoints(self):
         lpt = LeftPanelTest(driver=self.driver)
-        lpt.verifyBoardingPoints("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "21",
+        lpt.verifyBoardingPoints("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31",
                                  "elr", ["Satrampadu Elr", "Eluru", "Fire Station-elr"])
 
     def test_toVerifyDroppingPoints(self):
         lpt = LeftPanelTest(driver=self.driver)
-        lpt.verifyDroppingPoints("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "21",
+        lpt.verifyDroppingPoints("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31",
                                  "x road", ["Allywn X Road , Near Orange Travels Office ,Bata Showroom", "Alwyn x road",
                                             "Uppal X road"])
 
     def test_toVerifyFilteringBus(self):
         lpt = LeftPanelTest(driver=self.driver)
-        lpt.verifyBusFilters("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "27",
+        lpt.verifyBusFilters("elu", "Eluru", "hyd", "Hyderabad", "first", "last", "March", "2023", "31",
                              ["AC", "SLEEPER"],
                              "or", ["Orange Tours and Travels"],
                              "elr", ["Satrampadu Elr", "Eluru", "Fire Station-elr"],
