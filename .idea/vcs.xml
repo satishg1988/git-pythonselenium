@@ -3,6 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Selenium-Python-Framework" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/katalon" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/orangehrm" vcs="Git" />
   </component>
 </project>

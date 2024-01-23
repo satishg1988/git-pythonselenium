@@ -1,11 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="sateeshg">
     <words>
+      <w>abhibus</w>
       <w>autosearchbox</w>
       <w>buspartner</w>
       <w>bustype</w>
       <w>clearall</w>
       <w>closebutton</w>
+      <w>createuser</w>
       <w>depature</w>
       <w>downarrow</w>
       <w>elurpatti</w>
@@ -14,12 +16,16 @@
       <w>leavetype</w>
       <w>leftpane</w>
       <w>leftpanel</w>
+      <w>loginbutton</w>
       <w>mobilenumber</w>
       <w>noof</w>
       <w>pastemp</w>
       <w>pastemployees</w>
+      <w>postreq</w>
+      <w>postrequest</w>
       <w>pricedrop</w>
       <w>rightpanel</w>
+      <w>sateeshg</w>
       <w>tomonths</w>
       <w>topbar</w>
       <w>toyears</w>
