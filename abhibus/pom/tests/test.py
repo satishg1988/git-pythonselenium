@@ -102,3 +102,13 @@ for char, count in dup.items():
     if count > 1:
          duplicates.append(char)
 print("Duplicates: ", duplicates)
+
+nums = [5, 6, 0, 4, 6, 0, 9, 0, 8]
+print("Lenght:", len(nums))
+dump = []
+for i in nums:
+    if i == 0:
+        nums.remove(i)
+        nums.append(i)
+print(nums)
+

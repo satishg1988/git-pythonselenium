@@ -12,17 +12,21 @@ class HomePage(Events):
         self.action = ActionChains(self.driver)
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
+        self.events = Events(self.driver)
 
         # calling all the locators from allpageLocators>>AllLocators
-        self.bus_link = AL.bus_link
+        self.bus_link = AL.buses_link
         self.trains_link = AL.trains_link
         self.hotels_link = AL.hotels_link
         self.rentals_link = AL.rentals_link
-        self.leaving_from_textbox = AL.leaving_from_textbox
+        self.from_station_textbox = AL.from_station_textbox
         self.source_cities_list = AL.source_cities_list
-        self.going_to_textbox = AL.going_to_textbox
+        self.to_station_textbox = AL.to_station_textbox
         self.destination_cities_list = AL.destination_cities_list
-        self.date_of_journey_field = AL.date_of_journey_field
+        self.journey_date = AL.journey_date
+        self.month_name = AL.month_name
+        self.year_name = AL.year_name
+        self.dates_list = AL.dates_list
         self.month_group_pre_xpath = AL.month_group_pre_xpath
         self.month_group_post_xpath = AL.month_group_post_xpath
         self.year_group_pre_xpath = AL.year_group_pre_xpath
@@ -62,19 +66,21 @@ class HomePage(Events):
         self.hide_icon = AL.hide_icon
 
     # click the welcome username link on home page
-    def clickBusLink(self, locator_type="id"):
-        self.clickelement(self.bus_link, locator_type)
+    def clickBusLink(self):
+        self.events.clickElement(self.bus_link, "id")
 
-    def clickLeavingFromTextBox(self, locator_type="xpath"):
-        self.clickelement(self.leaving_from_textbox, locator_type)
+    def clickFromStation(self):
+        self.events.waitForPresenceOfElement(10, self.from_station_textbox, "xpath")
+        self.events.clickElement(self.from_station_textbox, "xpath")
 
-    def enterSourceCityName(self, req_src_city_name, locator_type="xpath"):
-        self.sendkeyselement(req_src_city_name, self.leaving_from_textbox, locator_type)
+    def enterSourceCityName(self, partial_src_city_name):
+        self.events.waitForPresenceOfElement(10, self.from_station_textbox, "xpath")
+        self.events.sendkeyselement(partial_src_city_name, self.from_station_textbox, "xpath")
 
-    def selectSourceCityName(self, expected_src_city_name, locator_type="xpath"):
+    def selectSourceCityName(self, expected_src_city_name):
         received_src_cityname = None
-        self.waitForPresenceOfElement(10, self.source_cities_list, locator_type)
-        cities_names = self.getElements(self.source_cities_list, locator_type)
+        self.events.waitForPresenceOfElement(10, self.source_cities_list, "xpath")
+        cities_names = self.events.getElements(self.source_cities_list, "xpath")
         for city_name in cities_names:
             received_src_cityname = city_name.text
             print(received_src_cityname)
@@ -83,16 +89,18 @@ class HomePage(Events):
                 break
         return received_src_cityname
 
-    def clickGoingToTextBox(self, locator_type="xpath"):
-        self.clickelement(self.going_to_textbox, locator_type)
+    def clickToStation(self):
+        self.events.waitForPresenceOfElement(10, self.to_station_textbox, "xpath")
+        self.events.clickElement(self.to_station_textbox, "xpath")
 
-    def enterDestinationCityName(self, req_dst_city_name, locator_type="xpath"):
-        self.sendkeyselement(req_dst_city_name, self.going_to_textbox, locator_type)
+    def enterToStationName(self, partial_city_name):
+        self.events.waitForPresenceOfElement(10, self.to_station_textbox, "xpath")
+        self.events.sendkeyselement(partial_city_name, self.to_station_textbox, "xpath")
 
-    def selectDestinationCityName(self, expected_dst_city_name, locator_type="xpath"):
+    def selectDestinationCityName(self, expected_dst_city_name):
         received_dst_cityname = None
-        self.waitForPresenceOfElement(5, self.destination_cities_list, locator_type)
-        destination_cities = self.getElements(self.destination_cities_list, locator_type)
+        self.events.waitForPresenceOfElement(5, self.destination_cities_list, "xpath")
+        destination_cities = self.events.getElements(self.destination_cities_list, "xpath")
         for city_name in destination_cities:
             received_dst_cityname = city_name.text
             print(received_dst_cityname)
@@ -102,17 +110,22 @@ class HomePage(Events):
                 break
         return received_dst_cityname
 
-    def clickDate(self, req_group_name, expected_month, expected_year, req_day, locator_type="xpath"):
-        self.clickelement(self.date_of_journey_field, locator_type)
-        month_final_xpath = self.month_group_pre_xpath + req_group_name + self.month_group_post_xpath
-        actual_month = self.getElementText(month_final_xpath, locator_type)
-        print("Actual Month Is: " + actual_month)
-        year_final_xpath = self.year_group_pre_xpath + req_group_name + self.year_group_post_xpath
-        actual_year = self.getElementText(year_final_xpath, locator_type)
-        print("Actual Year Is: " + actual_year)
+    def getDefaultDate(self):
+        self.events.waitElementToBeClickable(10, self.journey_date, "xpath")
+        default_date = self.events.getelement(self.journey_date, "xpath").get_attribute("value")
+        # print(default_date)
+        return default_date
+
+    def clickDate(self, expected_month, expected_year, req_day):
+        self.events.waitForPresenceOfElement(10, self.journey_date, "xpath")
+        journey_date_element = self.events.getelement(self.journey_date, "xpath")
+        self.action.move_to_element(journey_date_element).click().perform()
+        # self.events.clickElement(self.journey_date, "xpath")
+        actual_month = self.events.getElementText(self.month_name, "xpath")
+        actual_year = self.events.getElementText(self.year_name, "xpath")
+        print("Actual Month and Year: ", actual_month, actual_year)
         if (actual_month.casefold() == expected_month.casefold()) and (actual_year == expected_year):
-            all_days_final_xpath = self.days_group_pre_xpath + req_group_name + self.days_group_post_xpath
-            all_days_list = self.getElements(all_days_final_xpath, locator_type)
+            all_days_list = self.getElements(self.dates_list, "xpath")
             for day in all_days_list:
                 print("Day is: " + day.text)
                 print("Day Status is: " + str(day.is_enabled()))
