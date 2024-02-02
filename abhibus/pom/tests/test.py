@@ -88,3 +88,17 @@ print("String is: ", string[0:7])
 exp_text = "Hello, Your Coupon Code Copied. 😃" \
            "Please select your preferred bus routes and avail this discount offer on your bus ticket booking now!"
 print("Strip text: ", exp_text.split())
+
+main_str = "hello world"
+dup = {}
+for c in main_str:
+    if c in dup:
+        dup[c] = dup[c]+1
+    else:
+        dup[c] = 1
+print(dup, ": is the dup")
+duplicates = []
+for char, count in dup.items():
+    if count > 1:
+         duplicates.append(char)
+print("Duplicates: ", duplicates)
